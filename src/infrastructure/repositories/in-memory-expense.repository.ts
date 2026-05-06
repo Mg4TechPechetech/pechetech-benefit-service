@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { IExpenseRepository } from '../../core/ports/expense.repository.interface';
-import { Expense } from '../../core/domain/entities/expense.entity';
+import { Injectable } from "@nestjs/common";
+import { IExpenseRepository } from "../../core/ports/expense.repository.interface";
+import { Expense } from "../../core/domain/entities/expense.entity";
 
 @Injectable()
 export class InMemoryExpenseRepository implements IExpenseRepository {
