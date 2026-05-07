@@ -1,9 +1,12 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { IExpenseRepository, EXPENSE_REPOSITORY } from '../../core/ports/expense.repository.interface';
-import { Expense } from '../../core/domain/entities/expense.entity';
-import { ExpenseCategory } from '../../core/domain/enums/expense-category.enum';
-import { PaymentStatus } from '../../core/domain/enums/payment-status.enum';
-import { v4 as uuidv4 } from 'uuid';
+import { Injectable, Inject } from "@nestjs/common";
+import {
+  IExpenseRepository,
+  EXPENSE_REPOSITORY,
+} from "../../core/ports/expense.repository.interface";
+import { Expense } from "../../core/domain/entities/expense.entity";
+import { ExpenseCategory } from "../../core/domain/enums/expense-category.enum";
+import { PaymentStatus } from "../../core/domain/enums/payment-status.enum";
+import { randomUUID } from "crypto";
 
 export interface CreateExpenseDto {
   fishingCampaignId: string;
@@ -22,8 +25,9 @@ export class CreateExpenseUseCase {
   ) {}
 
   async execute(dto: CreateExpenseDto): Promise<Expense> {
+    // Bolt Optimization: Using native crypto.randomUUID() which is faster than uuidv4()
     const expense = new Expense(
-      uuidv4(),
+      randomUUID(),
       dto.fishingCampaignId,
       dto.supplierName,
       dto.totalAmount,
