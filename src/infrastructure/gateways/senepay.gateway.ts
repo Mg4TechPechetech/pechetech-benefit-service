@@ -14,9 +14,10 @@ export class SenePayGateway implements IPaymentGateway {
   }> {
     console.log(`Calling SenePay API to pay ${amount} FCFA to ${supplierName}`);
 
+    // Performance optimization: Native Node.js crypto.randomUUID() is significantly faster than the external uuid package.
+    // Impact: Reduces UUID generation time.
     return {
       success: true,
-      // ⚡ Bolt optimization: Using native crypto.randomUUID() instead of uuid package for better performance
       operatorReference: `SENEPAY-${crypto.randomUUID().substring(0, 8).toUpperCase()}`,
       httpCode: 200,
     };

@@ -25,7 +25,8 @@ export class CreateExpenseUseCase {
   ) {}
 
   async execute(dto: CreateExpenseDto): Promise<Expense> {
-    // ⚡ Bolt optimization: Using native crypto.randomUUID() instead of uuid package for better performance
+    // Performance optimization: Native Node.js crypto.randomUUID() is significantly faster than the external uuid package.
+    // Impact: Reduces UUID generation time.
     const expense = new Expense(
       crypto.randomUUID(),
       dto.fishingCampaignId,
