@@ -1,9 +1,12 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { IExpenseRepository, EXPENSE_REPOSITORY } from '../../core/ports/expense.repository.interface';
-import { Expense } from '../../core/domain/entities/expense.entity';
-import { ExpenseCategory } from '../../core/domain/enums/expense-category.enum';
-import { PaymentStatus } from '../../core/domain/enums/payment-status.enum';
-import * as crypto from 'crypto';
+import { Injectable, Inject } from "@nestjs/common";
+import {
+  IExpenseRepository,
+  EXPENSE_REPOSITORY,
+} from "../../core/ports/expense.repository.interface";
+import { Expense } from "../../core/domain/entities/expense.entity";
+import { ExpenseCategory } from "../../core/domain/enums/expense-category.enum";
+import { PaymentStatus } from "../../core/domain/enums/payment-status.enum";
+import * as crypto from "crypto";
 
 export interface CreateExpenseDto {
   fishingCampaignId: string;
@@ -22,8 +25,8 @@ export class CreateExpenseUseCase {
   ) {}
 
   async execute(dto: CreateExpenseDto): Promise<Expense> {
-    // ⚡ Bolt Performance Optimization: Using native crypto.randomUUID() instead of uuidv4()
-    // Native C++ implementation is significantly faster than userland JS
+    // Performance optimization: Native Node.js crypto.randomUUID() is significantly faster than the external uuid package.
+    // Impact: Reduces UUID generation time.
     const expense = new Expense(
       crypto.randomUUID(),
       dto.fishingCampaignId,

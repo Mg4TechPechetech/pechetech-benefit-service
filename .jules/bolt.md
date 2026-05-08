@@ -1,3 +1,3 @@
-## 03-05-2026 - Native crypto.randomUUID() Performance
-**Learning:** Node.js native `crypto.randomUUID()` is significantly faster (~60% faster) than the userland `uuid` package because it uses the native C++ implementation rather than executing JavaScript.
-**Action:** Always prefer native `crypto.randomUUID()` over `uuidv4` for UUID generation in Node.js backends for better performance, especially on high-traffic microservices.
+## 02-05-2024 - [Replace uuid with Node native crypto.randomUUID()]
+**Learning:** Node.js native `crypto.randomUUID()` is significantly faster than the widely used `uuid` package for UUID generation, especially inside tight loops. It reduces overhead and memory usage.
+**Action:** Prefer `crypto.randomUUID()` over external `uuid` libraries in Node.js environments when creating unique identifiers, to save milliseconds and reduce dependency sizes.
