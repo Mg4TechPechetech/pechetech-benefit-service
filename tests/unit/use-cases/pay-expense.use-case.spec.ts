@@ -13,9 +13,10 @@ describe('PayExpenseUseCase', () => {
   beforeEach(() => {
     mockExpenseRepo = {
       findById: jest.fn(),
+      findAll: jest.fn(),
       save: jest.fn(),
       update: jest.fn(),
-    };
+    } as any;
 
     mockPaymentGateway = {
       paySupplier: jest.fn(),
@@ -27,6 +28,7 @@ describe('PayExpenseUseCase', () => {
   it('should successfully pay an expense via mobile money', async () => {
     const mockExpense = new Expense(
       'exp-1',
+      'user-1',
       'camp-1',
       'Supplier',
       10000,
@@ -60,6 +62,7 @@ describe('PayExpenseUseCase', () => {
   it('should return false if payment fails', async () => {
     const mockExpense = new Expense(
       'exp-1',
+      'user-1',
       'camp-1',
       'Supplier',
       10000,

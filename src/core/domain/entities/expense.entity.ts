@@ -4,6 +4,7 @@ import { PaymentStatus } from "../enums/payment-status.enum";
 export class Expense {
   constructor(
     public readonly id: string,
+    public readonly userId: string,
     public readonly fishingCampaignId: string,
     public readonly supplierName: string,
     public readonly totalAmount: number,

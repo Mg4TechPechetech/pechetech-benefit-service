@@ -10,6 +10,10 @@ export class InMemoryExpenseRepository implements IExpenseRepository {
     return this.expenses.get(id) || null;
   }
 
+  async findAll(userId: string): Promise<Expense[]> {
+    return Array.from(this.expenses.values()).filter(e => e.userId === userId);
+  }
+
   async save(expense: Expense): Promise<void> {
     this.expenses.set(expense.id, expense);
   }

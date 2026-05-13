@@ -9,6 +9,7 @@ import { PaymentStatus } from "../../core/domain/enums/payment-status.enum";
 import * as crypto from "crypto";
 
 export interface CreateExpenseDto {
+  userId: string;
   fishingCampaignId: string;
   supplierName: string;
   totalAmount: number;
@@ -29,6 +30,7 @@ export class CreateExpenseUseCase {
     // Impact: Reduces UUID generation time.
     const expense = new Expense(
       crypto.randomUUID(),
+      dto.userId,
       dto.fishingCampaignId,
       dto.supplierName,
       dto.totalAmount,

@@ -6,6 +6,7 @@ describe('Expense Entity', () => {
   it('should create an expense with initial EN_ATTENTE status', () => {
     const expense = new Expense(
       'id-123',
+      'user-123',
       'camp-123',
       'Aliou Glace',
       15000,
@@ -21,6 +22,7 @@ describe('Expense Entity', () => {
   it('should successfully transition to PAYE_MOBILE_MONEY', () => {
     const expense = new Expense(
       'id-123',
+      'user-123',
       'camp-123',
       'Aliou Glace',
       15000,
@@ -36,6 +38,7 @@ describe('Expense Entity', () => {
   it('should throw an error if trying to pay an already paid expense', () => {
     const expense = new Expense(
       'id-123',
+      'user-123',
       'camp-123',
       'Aliou Glace',
       15000,

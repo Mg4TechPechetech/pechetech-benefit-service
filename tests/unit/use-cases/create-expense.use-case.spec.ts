@@ -10,6 +10,7 @@ describe('CreateExpenseUseCase', () => {
   beforeEach(() => {
     mockExpenseRepo = {
       findById: jest.fn(),
+      findAll: jest.fn(),
       save: jest.fn(),
       update: jest.fn(),
     };
@@ -19,6 +20,7 @@ describe('CreateExpenseUseCase', () => {
 
   it('should create an expense successfully', async () => {
     const dto = {
+      userId: 'user-123',
       fishingCampaignId: 'camp-123',
       supplierName: 'Moussa Appats',
       totalAmount: 5000,

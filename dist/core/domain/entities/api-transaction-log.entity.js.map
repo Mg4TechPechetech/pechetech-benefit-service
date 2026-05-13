@@ -1,0 +1,1 @@
+{"version":3,"file":"api-transaction-log.entity.js","sourceRoot":"","sources":["../../../../src/core/domain/entities/api-transaction-log.entity.ts"],"names":[],"mappings":";;;AAAA,MAAa,iBAAiB;IAC5B,YACkB,EAAU,EACV,SAAiB,EACjB,iBAAyB,EACzB,cAAsB;QAHtB,OAAE,GAAF,EAAE,CAAQ;QACV,cAAS,GAAT,SAAS,CAAQ;QACjB,sBAAiB,GAAjB,iBAAiB,CAAQ;QACzB,mBAAc,GAAd,cAAc,CAAQ;IACrC,CAAC;CACL;AAPD,8CAOC"}
