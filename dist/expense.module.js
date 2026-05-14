@@ -13,6 +13,7 @@ const expense_controller_1 = require("./presentation/controllers/expense.control
 const create_expense_use_case_1 = require("./use-cases/expense/create-expense.use-case");
 const pay_expense_use_case_1 = require("./use-cases/expense/pay-expense.use-case");
 const calculate_solvability_use_case_1 = require("./use-cases/finance/calculate-solvability.use-case");
+const get_user_expenses_use_case_1 = require("./use-cases/expense/get-user-expenses.use-case");
 const expense_repository_interface_1 = require("./core/ports/expense.repository.interface");
 const typeorm_expense_repository_1 = require("./infrastructure/repositories/typeorm-expense.repository");
 const expense_db_entity_1 = require("./infrastructure/database/entities/expense.db-entity");
@@ -29,6 +30,7 @@ exports.ExpenseModule = ExpenseModule = __decorate([
             create_expense_use_case_1.CreateExpenseUseCase,
             pay_expense_use_case_1.PayExpenseUseCase,
             calculate_solvability_use_case_1.CalculateSolvabilityUseCase,
+            get_user_expenses_use_case_1.GetUserExpensesUseCase,
             {
                 provide: expense_repository_interface_1.EXPENSE_REPOSITORY,
                 useClass: typeorm_expense_repository_1.TypeOrmExpenseRepository,

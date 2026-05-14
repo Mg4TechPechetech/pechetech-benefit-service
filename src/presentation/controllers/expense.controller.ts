@@ -5,6 +5,7 @@ import {
 } from "../../use-cases/expense/create-expense.use-case";
 import { PayExpenseUseCase } from "../../use-cases/expense/pay-expense.use-case";
 import { CalculateSolvabilityUseCase } from "../../use-cases/finance/calculate-solvability.use-case";
+import { GetUserExpensesUseCase } from "../../use-cases/expense/get-user-expenses.use-case";
 
 @Controller("expenses")
 export class ExpenseController {
@@ -12,6 +13,7 @@ export class ExpenseController {
     private readonly createExpenseUseCase: CreateExpenseUseCase,
     private readonly payExpenseUseCase: PayExpenseUseCase,
     private readonly calculateSolvabilityUseCase: CalculateSolvabilityUseCase,
+    private readonly getUserExpensesUseCase: GetUserExpensesUseCase,
   ) {}
 
   @Post()
@@ -40,6 +42,16 @@ export class ExpenseController {
     try {
       const result = await this.calculateSolvabilityUseCase.execute(userId);
       return { success: true, data: result };
+    } catch (error) {
+      return { success: false, error: (error as Error).message };
+    }
+  }
+
+  @Get("user/:userId")
+  async getUserExpenses(@Param("userId") userId: string) {
+    try {
+      const expenses = await this.getUserExpensesUseCase.execute(userId);
+      return { success: true, data: expenses };
     } catch (error) {
       return { success: false, error: (error as Error).message };
     }

@@ -17,11 +17,13 @@ const common_1 = require("@nestjs/common");
 const create_expense_use_case_1 = require("../../use-cases/expense/create-expense.use-case");
 const pay_expense_use_case_1 = require("../../use-cases/expense/pay-expense.use-case");
 const calculate_solvability_use_case_1 = require("../../use-cases/finance/calculate-solvability.use-case");
+const get_user_expenses_use_case_1 = require("../../use-cases/expense/get-user-expenses.use-case");
 let ExpenseController = class ExpenseController {
-    constructor(createExpenseUseCase, payExpenseUseCase, calculateSolvabilityUseCase) {
+    constructor(createExpenseUseCase, payExpenseUseCase, calculateSolvabilityUseCase, getUserExpensesUseCase) {
         this.createExpenseUseCase = createExpenseUseCase;
         this.payExpenseUseCase = payExpenseUseCase;
         this.calculateSolvabilityUseCase = calculateSolvabilityUseCase;
+        this.getUserExpensesUseCase = getUserExpensesUseCase;
     }
     async createExpense(dto) {
         try {
@@ -45,6 +47,15 @@ let ExpenseController = class ExpenseController {
         try {
             const result = await this.calculateSolvabilityUseCase.execute(userId);
             return { success: true, data: result };
+        }
+        catch (error) {
+            return { success: false, error: error.message };
+        }
+    }
+    async getUserExpenses(userId) {
+        try {
+            const expenses = await this.getUserExpensesUseCase.execute(userId);
+            return { success: true, data: expenses };
         }
         catch (error) {
             return { success: false, error: error.message };
@@ -74,10 +85,18 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ExpenseController.prototype, "getSolvability", null);
+__decorate([
+    (0, common_1.Get)("user/:userId"),
+    __param(0, (0, common_1.Param)("userId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ExpenseController.prototype, "getUserExpenses", null);
 exports.ExpenseController = ExpenseController = __decorate([
     (0, common_1.Controller)("expenses"),
     __metadata("design:paramtypes", [create_expense_use_case_1.CreateExpenseUseCase,
         pay_expense_use_case_1.PayExpenseUseCase,
-        calculate_solvability_use_case_1.CalculateSolvabilityUseCase])
+        calculate_solvability_use_case_1.CalculateSolvabilityUseCase,
+        get_user_expenses_use_case_1.GetUserExpensesUseCase])
 ], ExpenseController);
 //# sourceMappingURL=expense.controller.js.map
